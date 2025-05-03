@@ -101,6 +101,7 @@ export default function DrawingApp() {
           try {
             newCtx.putImageData(tempImageData, 0, 0);
           } catch (e) {
+            console.error("Failed to putImageData, redrawing instead:", e);
             redrawCanvas(newCtx);
           }
         } else {
@@ -220,7 +221,7 @@ export default function DrawingApp() {
     const endX = e.clientX - rect.left;
     const endY = e.clientY - rect.top;
 
-    let newAction: DrawingAction = {
+    const newAction: DrawingAction = {
       tool: selectedTool,
       color: color,
       size: brushSize,
